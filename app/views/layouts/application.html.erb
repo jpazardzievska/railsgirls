@@ -3,7 +3,8 @@
 <head>
   <title>Railsgirls</title>
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//railsgirls.com/assets/bootstrap-theme.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+  <!-- <link rel="stylesheet" href="//railsgirls.com/assets/bootstrap-theme.css" /> -->
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -21,15 +22,17 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-	  <a class="brand" href="/">Rails Ideas</a>
-      <a class="navbar-brand" href="/ideas">Ideas</a>
-	  <a class="navbar-brand" href="/ideas/new">New Idea</a>
+	  <ul class="nav nat-tabs">
+		<li class="active"><a href="#">Rails Ideas</a></li>
+		<li><a href="/ideas/new">New Ideas</a></li>
+		<li><a href="/ideas">Idea</a></li>
+	  </ul>
 	  <p class="navbar-text pull-right">
 		<% if user_signed_in? %>
 		Logged in as <strong><%= current_user.email %></strong>.
 		<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
 		<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-		<%= image_tag current_user.gravatar_url %>
+		<%= image_tag(current_user.gravatar_url, :size =>"40x40") %>
 		<% else %>
 		<%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
 		<%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
