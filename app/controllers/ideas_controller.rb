@@ -4,7 +4,11 @@ class IdeasController < ApplicationController
   # GET /ideas
   # GET /ideas.json
   def index
-    @ideas = Idea.all
+	if params[:search]
+	   @ideas = Idea.search(params[:search]).order("created_at DESC")
+	else
+       @ideas = Idea.all
+	end
   end
 
   # GET /ideas/1
@@ -72,4 +76,5 @@ class IdeasController < ApplicationController
     def idea_params
       params.require(:idea).permit(:name, :description, :picture, :location)
     end
+	
 end
